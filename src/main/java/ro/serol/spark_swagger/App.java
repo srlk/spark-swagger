@@ -2,11 +2,17 @@ package ro.serol.spark_swagger;
 
 import static spark.Spark.before;
 import static spark.Spark.get;
+import static spark.Spark.staticFiles;
 
 import io.swagger.annotations.Contact;
 import io.swagger.annotations.Info;
 import io.swagger.annotations.SwaggerDefinition;
 import io.swagger.annotations.Tag;
+import org.apache.commons.io.FileUtils;
+
+import java.io.File;
+import java.io.FileReader;
+import java.util.concurrent.TimeUnit;
 
 @SwaggerDefinition(host = "localhost:4567", //
 info = @Info(description = "DonateAPP API", //
@@ -24,7 +30,13 @@ public class App {
 	public static void main(String[] args) {
 
 		try {
-			// Quite unsafe!
+
+            String projectDir = System.getProperty("user.dir");
+            String staticDir = "/src/main/resources";
+
+            staticFiles.externalLocation(projectDir + staticDir + "/public");
+
+            // Quite unsafe!
 			before(new CorsFilter());
 			new OptionsController();
 
@@ -37,6 +49,14 @@ public class App {
 				return swaggerJson;
 			});
 
+            get("/explorer", (req, res) -> {
+                res.type("text/html");
+                File file = new File("/Users/jeff/dev/markf/spark-swagger/src/main/resources/public/index.html");
+                String out = FileUtils.readFileToString(file, "UTF-8");
+                System.out.println(out);
+                res.body(out);
+                return out;
+            });
 		} catch (Exception e) {
 			System.err.println(e);
 			e.printStackTrace();
