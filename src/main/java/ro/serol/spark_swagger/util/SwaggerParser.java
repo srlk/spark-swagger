@@ -1,4 +1,4 @@
-package ro.serol.spark_swagger;
+package ro.serol.spark_swagger.util;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonProcessingException;

@@ -5,6 +5,7 @@ import static spark.Spark.get;
 import static spark.Spark.staticFiles;
 
 import ro.serol.spark_swagger.route.Api;
+import ro.serol.spark_swagger.util.SwaggerParser;
 
 public class App {
 
