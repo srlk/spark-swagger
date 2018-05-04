@@ -65,3 +65,7 @@ local.properties
 # Code Recommenders
 .recommenders/
 
+# IntelliJ Projects
+*.iml
+.idea
+
