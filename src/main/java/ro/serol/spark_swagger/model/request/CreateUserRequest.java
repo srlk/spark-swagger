@@ -1,4 +1,4 @@
-package ro.serol.spark_swagger.route.request;
+package ro.serol.spark_swagger.model.request;
 
 import ro.serol.spark_swagger.model.BloodType;
 
